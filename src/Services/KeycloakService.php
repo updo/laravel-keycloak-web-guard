@@ -152,7 +152,7 @@ class KeycloakService
         }
 
         if (is_null($this->scope) && Config::has('keycloak-web.scope')) {
-            $this->idp = Config::get('keycloak-web.scope');
+            $this->scope = Config::get('keycloak-web.scope');
         }
 
         $this->state = $this->generateRandomState();

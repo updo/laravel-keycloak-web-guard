@@ -52,6 +52,16 @@ return [
     'redirect_url' => '/admin',
 
     /**
+     * scope
+     */
+    'client_scope' => env('KEYCLOAK_SCOPE', 'openid'),
+
+    /**
+     * client idp  optional
+     */
+    'client_idp' => env('KEYCLOAK_IDP', null),
+
+    /**
      * The routes for authenticate
      *
      * Accept a string as the first parameter of route() or false to disable the route.

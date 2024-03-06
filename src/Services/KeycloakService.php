@@ -89,6 +89,20 @@ class KeycloakService
     protected $state;
 
     /**
+     * get the IDP
+     * @var string
+     */
+
+     protected $idp;
+
+    /**
+     * get the Scope
+     * @var string
+     */
+
+     protected $scope;
+
+     /**
      * The HTTP Client
      *
      * @var ClientInterface
@@ -133,6 +147,14 @@ class KeycloakService
             $this->redirectLogout = Config::get('keycloak-web.redirect_logout');
         }
 
+        if (is_null($this->idp) && Config::has('keycloak-web.idp')) {
+            $this->idp = Config::get('keycloak-web.idp');
+        }
+
+        if (is_null($this->scope) && Config::has('keycloak-web.scope')) {
+            $this->idp = Config::get('keycloak-web.scope');
+        }
+
         $this->state = $this->generateRandomState();
         $this->httpClient = $client;
     }
@@ -155,6 +177,9 @@ class KeycloakService
             'state' => $this->getState(),
         ];
 
+        if(!is_null($this->getIDP())){
+          $params['id_token_hint'] = $this->getIDP();
+        }
         return $this->buildUrl($url, $params);
     }
 
@@ -480,6 +505,24 @@ class KeycloakService
     protected function getState()
     {
         return $this->state;
+    }
+
+     /**
+     * Return IDP 
+     *
+     * @return string
+     */
+    protected  function getIDP(){
+        return $this->idp;
+    }
+
+    /**
+     * Return IDP 
+     *
+     * @return string
+     */
+    protected  function getScope(){
+        return $this->scope;
     }
 
     /**

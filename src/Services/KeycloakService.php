@@ -178,7 +178,7 @@ class KeycloakService
         ];
 
         if(!is_null($this->getIDP())){
-          $params['id_token_hint'] = $this->getIDP();
+          $params['kc_idp_hint'] = $this->getIDP();
         }
         return $this->buildUrl($url, $params);
     }

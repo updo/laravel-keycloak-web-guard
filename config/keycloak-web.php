@@ -54,12 +54,12 @@ return [
     /**
      * scope
      */
-    'client_scope' => env('KEYCLOAK_SCOPE', 'openid'),
+    'scope' => env('KEYCLOAK_SCOPE', 'openid'),
 
     /**
      * client idp  optional
      */
-    'client_idp' => env('KEYCLOAK_IDP', null),
+    'idp' => env('KEYCLOAK_IDP', null),
 
     /**
      * The routes for authenticate
